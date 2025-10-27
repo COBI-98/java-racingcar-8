@@ -12,7 +12,7 @@ public class CarInputParser {
     public CarInputParser() {
     }
 
-    public static List<Car> splitCarNames(String input) {
+    public static List<Car> splitCarNames(final String input) {
         return Arrays.stream(input.split(DELIMITER_COMMA, PRESERVE_EMPTY_VALUES))
                      .map(Car::new)
                      .toList();

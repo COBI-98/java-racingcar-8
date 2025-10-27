@@ -8,12 +8,12 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         validateNoDuplicateCarNames(cars);
         this.cars = cars;
     }
 
-    private void validateNoDuplicateCarNames(List<Car> cars) {
+    private void validateNoDuplicateCarNames(final List<Car> cars) {
         long distinct = cars.stream()
                 .map(Car::getCarName)
                 .distinct()
