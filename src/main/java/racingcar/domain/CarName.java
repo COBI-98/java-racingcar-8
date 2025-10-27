@@ -21,4 +21,9 @@ public record CarName(String name) {
             throw new IllegalArgumentException("[ERROR] 자동차이름은 1자리이상 5자 이하만 가능합니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
