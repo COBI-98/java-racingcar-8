@@ -32,4 +32,17 @@ class CarNameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedMessage);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"morning", "avante"})
+    @DisplayName("경주할 자동차 이름은 유효한 범위(1이상 5이하)를 가져야한다. ")
+    void constructor_carName_length_fail(String carName) {
+        // given
+        String expectedMessage = "[ERROR] 자동차이름은 1자리이상 5자 이하만 가능합니다.";
+
+        // when & then
+        assertThatThrownBy(() -> new CarName(carName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
 }
