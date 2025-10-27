@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
@@ -49,5 +51,50 @@ class CarTest {
 
         // then
         assertThat(car.getDistance().toInt()).isZero();
+    }
+
+    @DisplayName("isSameDistance(): 같은 위치의 자동차가 존재하는지 확인할 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"2,6,false", "6,6,true"})
+    void isSameDistance_car_success(
+            int moveCondition1,
+            int moveCondition2,
+            boolean sameDistanceCheck
+    ) throws Exception {
+        //given
+        Car myCar = new Car("pobi");
+        Car competeCar = new Car("woni");
+
+        //when
+        myCar.move(moveCondition1);
+        competeCar.move(moveCondition2);
+        boolean sameDistance = myCar.isSameDistance(competeCar);
+
+        //then
+        assertThat(sameDistance).isEqualTo(sameDistanceCheck);
+    }
+
+    @DisplayName("compareTo(): 전진한 자동차들을 비교할 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"2,6,-1", "6,6,0","6,2,1"})
+    void compareTo_car_success(
+            int moveCondition1,
+            int moveCondition2,
+            int compareToCheck
+    ) throws Exception {
+
+        //given
+        String myCarName = "pobi";
+        String competeCarName = "woni";
+        Car myCar = new Car(myCarName);
+        Car competeCar = new Car(competeCarName);
+
+        //when
+        myCar.move(moveCondition1);
+        competeCar.move(moveCondition2);
+        int compare = myCar.compareTo(competeCar);
+
+        //then
+        assertThat(compare).isEqualTo(compareToCheck);
     }
 }
