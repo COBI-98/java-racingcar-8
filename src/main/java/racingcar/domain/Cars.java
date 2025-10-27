@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.util.RandomUtils;
 
 public class Cars {
 
@@ -20,6 +21,13 @@ public class Cars {
                 .count();
         if (distinct != (long) cars.size()) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복으로 사용될 수 없습니다.");
+        }
+    }
+
+    public void moveAll(final RandomUtils randomUtils) {
+        for (final Car car : cars) {
+            int engine = randomUtils.generateRandomNumber();
+            car.move(engine);
         }
     }
 }
