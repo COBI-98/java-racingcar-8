@@ -26,6 +26,8 @@ public class RacingController {
         TryCount tryCount = new TryCount(inputView.inputAttempts());
 
         racing(racingCars, tryCount);
+
+        outputView.printRacingCarWinnerResult(racingCars);
     }
 
     private Cars createRacingCars() {
