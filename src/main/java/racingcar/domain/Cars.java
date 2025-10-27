@@ -9,7 +9,17 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateNoDuplicateCarNames(cars);
         this.cars = cars;
     }
 
+    private void validateNoDuplicateCarNames(List<Car> cars) {
+        long distinct = cars.stream()
+                .map(Car::getCarName)
+                .distinct()
+                .count();
+        if (distinct != (long) cars.size()) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복으로 사용될 수 없습니다.");
+        }
+    }
 }
