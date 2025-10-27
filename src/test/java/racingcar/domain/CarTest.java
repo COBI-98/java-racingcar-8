@@ -9,9 +9,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
+    @DisplayName("constructor(): 경주할 자동차를 생성할 수 있다.")
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "woni", "jun"})
-    @DisplayName("경주할 자동차를 생성할 수 있다.")
     void constructor_car_success(String input) {
         // given
         Car car = new Car(input);

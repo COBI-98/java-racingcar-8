@@ -9,9 +9,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarNameTest {
 
+    @DisplayName("constructor(): 경주할 자동차를 생성할 수 있다.")
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "woni", "jun"})
-    @DisplayName("경주할 자동차를 생성할 수 있다.")
     void constructor_carName_success(String input) {
         // given
         CarName carName = new CarName(input);
@@ -20,10 +20,10 @@ class CarNameTest {
         assertThat(carName.name()).isEqualTo(input);
     }
 
+    @DisplayName("validateCarNameNonBlank(): 경주할 자동차 이름이 비어있거나 공백일 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {"    ", ""})
-    @DisplayName("경주할 자동차 이름이 비어있거나 공백일 수 없다.")
-    void constructor_carName_blank_fail(String carName) {
+    void validateCarNameNonBlank_carName_fail(String carName) {
         // given
         String expectedMessage = "[ERROR] 자동차이름은 비어있거나 공백일 수 없습니다.";
 
@@ -33,10 +33,10 @@ class CarNameTest {
                 .hasMessageContaining(expectedMessage);
     }
 
+    @DisplayName("validateCarNameLength(): 경주할 자동차 이름은 유효한 범위(1이상 5이하)를 가져야한다.")
     @ParameterizedTest
     @ValueSource(strings = {"morning", "avante"})
-    @DisplayName("경주할 자동차 이름은 유효한 범위(1이상 5이하)를 가져야한다. ")
-    void constructor_carName_length_fail(String carName) {
+    void validateCarNameLength_carName_fail(String carName) {
         // given
         String expectedMessage = "[ERROR] 자동차이름은 1자리이상 5자 이하만 가능합니다.";
 

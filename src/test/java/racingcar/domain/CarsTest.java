@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CarsTest {
 
-    @DisplayName("각 자동차에 이름을 부여할 수 있다.")
+    @DisplayName("constructor(): 각 자동차에 이름을 부여할 수 있다.")
     @ParameterizedTest
     @CsvSource({
             "pobi,woni,jin"
@@ -27,10 +27,12 @@ class CarsTest {
         assertThatCode(() -> new Cars(cars)).doesNotThrowAnyException();
     }
 
-    @DisplayName("자동차 이름은 중복으로 사용될 수 없다.")
+    @DisplayName("validateNoDuplicateCarNames(): 자동차 이름은 중복으로 사용될 수 없다.")
     @ParameterizedTest
-    @CsvSource({"pobi,pobi,woni,jin"})
-    void constructor_cars_fail(
+    @CsvSource({
+            "pobi,pobi,woni,jin"
+    })
+    void validateNoDuplicateCarNames_cars_fail(
             String pobi,
             String pobi2,
             String woni,
