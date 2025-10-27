@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.List;
@@ -46,5 +47,30 @@ class CarsTest {
         Assertions.assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(errorMessage);
+    }
+
+    @DisplayName("findWinners(): 가장 먼 거리에있는 자동차가 우승자이다.")
+    @ParameterizedTest
+    @CsvSource({
+            "2,6,1",
+            "6,6,2"
+    })
+    void findWinners_cars_success(
+            int moveCondition1,
+            int moveCondition2,
+            int maxDistance
+    ) throws Exception {
+        //given
+        Car myCar = new Car("pobi");
+        Car competeCar = new Car("woni");
+        myCar.move(moveCondition1);
+        competeCar.move(moveCondition2);
+
+        //when
+        Cars cars = new Cars(List.of(myCar, competeCar));
+        List<CarName> winners = cars.findWinners();
+
+        //then
+        assertThat(winners).hasSize(maxDistance);
     }
 }

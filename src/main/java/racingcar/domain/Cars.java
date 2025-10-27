@@ -30,4 +30,27 @@ public class Cars {
             car.move(engine);
         }
     }
+
+    public List<CarName> findWinners() {
+        Car maxDistanceCar = findMaxDistanceCar();
+        List<CarName> winnerCarNameList = findSameDistanceList(maxDistanceCar);
+        return winnerCarNameList;
+    }
+
+    private Car findMaxDistanceCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 경주할 자동차가 없습니다."));
+    }
+
+    private List<CarName> findSameDistanceList(Car maxDistanceCar) {
+        return cars.stream()
+                .filter(maxDistanceCar::isSameDistance)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
 }
