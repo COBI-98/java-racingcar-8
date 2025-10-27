@@ -1,0 +1,16 @@
+package racingcar.controller;
+
+import racingcar.view.InputView;
+
+public class RacingController {
+
+    private final InputView inputView;
+
+    public RacingController() {
+        inputView = new InputView();
+    }
+
+    public void start() {
+        inputView.inputCarNames();
+    }
+}
